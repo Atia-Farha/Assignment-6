@@ -1,9 +1,13 @@
 -- A) find 3 second lowest salary from employee table
-SELECT DISTINCT salary
+SELECT *
 FROM employee
-ORDER BY salary ASC
-LIMIT 1
-OFFSET 2;
+WHERE salary = (
+    SELECT DISTINCT salary
+    FROM employee
+    ORDER BY salary ASC
+    LIMIT 1 OFFSET 1
+)
+LIMIT 3;
 
 -- B) find second lowest salary from employee table using sub query
 SELECT MIN(salary) AS second_lowest_salary
